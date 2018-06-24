@@ -3,12 +3,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-deep_rl_progress = pd.read_csv('data/deep_rl__openai-2018-06-23-17-28-07-455021/progress.csv')
-deep_rl_ram_1_hidden_progress = pd.read_csv('data/deep_rl_ram_1_hidden__openai-2018-06-23-19-45-24-528159/progress.csv')
-deep_rl_ram_2_hidden_progress = pd.read_csv('data/deep_rl_ram_2_hidden__openai-2018-06-23-20-41-41-153710/progress.csv')
-deep_rl_ram_3_hidden_progress = pd.read_csv('data/deep_rl_ram_3_hidden__openai-2018-06-23-21-47-46-256420/progress.csv')
-deep_rl_ram_4_hidden_progress = pd.read_csv('data/deep_rl_ram_4_hidden__openai-2018-06-24-10-17-53-301999/progress.csv')
-deep_rl_ram_5_hidden_progress = pd.read_csv('data/deep_rl_ram_5_hidden__openai-2018-06-24-11-20-52-477957/progress.csv')
+deep_rl_progress = pd.read_csv('data/deep_rl__openai-first-execution/progress.csv')
+deep_rl_ram_1_hidden_progress = pd.read_csv('data/deep_rl_ram_1_hidden__openai-first-execution/progress.csv')
+deep_rl_ram_2_hidden_progress = pd.read_csv('data/deep_rl_ram_2_hidden__openai-first-execution/progress.csv')
+deep_rl_ram_3_hidden_progress = pd.read_csv('data/deep_rl_ram_3_hidden__openai-first-execution/progress.csv')
+deep_rl_ram_4_hidden_progress = pd.read_csv('data/deep_rl_ram_4_hidden__openai-first-execution/progress.csv')
+deep_rl_ram_5_hidden_progress = pd.read_csv('data/deep_rl_ram_5_hidden__openai-first-execution/progress.csv')
 
 progress = [deep_rl_progress, deep_rl_ram_1_hidden_progress, deep_rl_ram_2_hidden_progress, deep_rl_ram_3_hidden_progress, deep_rl_ram_4_hidden_progress, deep_rl_ram_5_hidden_progress]
 
