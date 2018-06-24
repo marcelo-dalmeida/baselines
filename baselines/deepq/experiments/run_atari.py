@@ -13,7 +13,7 @@ def main():
     parser.add_argument('--prioritized', type=int, default=1)
     parser.add_argument('--prioritized-replay-alpha', type=float, default=0.6)
     parser.add_argument('--dueling', type=int, default=1)
-    parser.add_argument('--num-timesteps', type=int, default=int(10e6))
+    parser.add_argument('--num-timesteps', type=int, default=int(10e5))
     args = parser.parse_args()
     logger.configure()
     set_global_seeds(args.seed)
