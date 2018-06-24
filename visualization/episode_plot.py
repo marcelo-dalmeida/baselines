@@ -8,9 +8,11 @@ deep_rl_episode = pd.read_csv('data/deep_rl__openai-2018-06-23-17-28-07-455021/m
 deep_rl_ram_1_hidden_episode = pd.read_csv('data/deep_rl_ram_1_hidden__openai-2018-06-23-19-45-24-528159/monitor.csv', header=1)
 deep_rl_ram_2_hidden_episode = pd.read_csv('data/deep_rl_ram_2_hidden__openai-2018-06-23-20-41-41-153710/monitor.csv', header=1)
 deep_rl_ram_3_hidden_episode = pd.read_csv('data/deep_rl_ram_3_hidden__openai-2018-06-23-21-47-46-256420/monitor.csv', header=1)
+deep_rl_ram_4_hidden_episode = pd.read_csv('data/deep_rl_ram_4_hidden__openai-2018-06-24-10-17-53-301999/monitor.csv', header=1)
+deep_rl_ram_5_hidden_episode = pd.read_csv('data/deep_rl_ram_5_hidden__openai-2018-06-24-11-20-52-477957/monitor.csv', header=1)
 
 
-episode = [deep_rl_episode, deep_rl_ram_1_hidden_episode, deep_rl_ram_2_hidden_episode, deep_rl_ram_3_hidden_episode]
+episode = [deep_rl_episode, deep_rl_ram_1_hidden_episode, deep_rl_ram_2_hidden_episode, deep_rl_ram_3_hidden_episode, deep_rl_ram_4_hidden_episode, deep_rl_ram_5_hidden_episode]
 
 
 for e in episode:
@@ -35,7 +37,7 @@ plt.xlim=(xmin, xmax)
 plt.ylim=(ymin, ymax)
 plt.xlabel("episode")
 plt.ylabel("reward")
-plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden'])
+plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden', 'deep_rl_ram_4_hidden', 'deep_rl_ram_5_hidden'])
 
 
 time_by_episode = [e.loc[:, 'time'].to_frame() for e in episode]
@@ -54,7 +56,7 @@ plt.xlim=(xmin, xmax)
 plt.ylim=(ymin, ymax)
 plt.xlabel("episode")
 plt.ylabel("time")
-plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden'])
+plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden', 'deep_rl_ram_4_hidden', 'deep_rl_ram_5_hidden'])
 
 ax = plt.gca()
 ax.set_yticklabels([str(datetime.timedelta(seconds=ytick)) for ytick in ax.get_yticks()])
@@ -80,7 +82,7 @@ plt.xlim=(xmin, xmax)
 plt.ylim=(ymin, ymax)
 plt.xlabel("time")
 plt.ylabel("cummulative reward")
-plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden'])
+plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden', 'deep_rl_ram_4_hidden', 'deep_rl_ram_5_hidden'])
 
 ax = plt.gca()
 ax.set_xticklabels([str(datetime.timedelta(seconds=xtick)) for xtick in ax.get_xticks()])
