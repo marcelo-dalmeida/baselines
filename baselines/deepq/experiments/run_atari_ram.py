@@ -19,7 +19,7 @@ def main():
     set_global_seeds(args.seed)
     env = make_atari(args.env)
     env = bench.Monitor(env, logger.get_dir())
-    #verificar o modelo correto
+
     model = deepq.models.mlp(
         hiddens=[256, 256, 256]
     )
