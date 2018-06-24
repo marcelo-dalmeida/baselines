@@ -21,7 +21,7 @@ def main():
     env = bench.Monitor(env, logger.get_dir())
     #verificar o modelo correto
     model = deepq.models.mlp(
-        hiddens=[256, 256, 256]
+        hiddens=[256, 256, 256, 256, 256]
     )
 
     deepq.learn(
