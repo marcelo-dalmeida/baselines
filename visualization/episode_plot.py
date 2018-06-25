@@ -4,89 +4,118 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
 
-deep_rl_episode = pd.read_csv('data/deep_rl__openai-first-execution/monitor.csv', header=1)
-deep_rl_ram_1_hidden_episode = pd.read_csv('data/deep_rl_ram_1_hidden__openai-first-execution/monitor.csv', header=1)
-deep_rl_ram_2_hidden_episode = pd.read_csv('data/deep_rl_ram_2_hidden__openai-first-execution/monitor.csv', header=1)
-deep_rl_ram_3_hidden_episode = pd.read_csv('data/deep_rl_ram_3_hidden__openai-first-execution/monitor.csv', header=1)
-deep_rl_ram_4_hidden_episode = pd.read_csv('data/deep_rl_ram_4_hidden__openai-first-execution/monitor.csv', header=1)
-deep_rl_ram_5_hidden_episode = pd.read_csv('data/deep_rl_ram_5_hidden__openai-first-execution/monitor.csv', header=1)
+def plot(episode, legend):
+    for e in episode:
+        e.columns = ['reward', 'length', 'time']
+        e.index.name = "episode"
 
 
-episode = [deep_rl_episode, deep_rl_ram_1_hidden_episode, deep_rl_ram_2_hidden_episode, deep_rl_ram_3_hidden_episode, deep_rl_ram_4_hidden_episode, deep_rl_ram_5_hidden_episode]
+    #figure 1
+    plt.figure()
+
+    reward_by_episode = [e.loc[:, 'reward'].to_frame() for e in episode]
+
+    xmax = max([r.index.max() for r in reward_by_episode])
+    xmin = min([r.index.min() for r in reward_by_episode])
+    ymax = max([r.loc[:, 'reward'].max() for r in reward_by_episode])
+    ymin = min([r.loc[:, 'reward'].min() for r in reward_by_episode])
 
 
-for e in episode:
-    e.columns = ['reward', 'length', 'time']
-    e.index.name = "episode"
+    for r in reward_by_episode:
+        plt.plot(r.index.tolist(), r['reward'].tolist())
+
+    plt.xlim=(xmin, xmax)
+    plt.ylim=(ymin, ymax)
+    plt.xlabel("episode")
+    plt.ylabel("reward")
+    plt.legend(legend)
 
 
-reward_by_episode = [e.loc[:, 'reward'].to_frame() for e in episode]
+    #figure 2
+    plt.figure()
 
-xmax = max([r.index.max() for r in reward_by_episode])
-xmin = min([r.index.min() for r in reward_by_episode])
-ymax = max([r.loc[:, 'reward'].max() for r in reward_by_episode])
-ymin = min([r.loc[:, 'reward'].min() for r in reward_by_episode])
+    cummulative_reward_by_time = [e.loc[:, ['time', 'reward']] for e in episode]
 
+    for r in cummulative_reward_by_time:
+        r['cummulative_reward'] = r['reward'].rolling(min_periods=1, window=len(r)).sum()
 
-plt.figure()
-
-for r in reward_by_episode:
-    plt.plot(r.index.tolist(), r['reward'].tolist())
-
-plt.xlim=(xmin, xmax)
-plt.ylim=(ymin, ymax)
-plt.xlabel("episode")
-plt.ylabel("reward")
-plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden', 'deep_rl_ram_4_hidden', 'deep_rl_ram_5_hidden'])
+    xmax = max([r.loc[:, 'time'].max() for r in cummulative_reward_by_time])
+    xmin = min([r.loc[:, 'time'].min() for r in cummulative_reward_by_time])
+    ymax = max([r.loc[:, 'cummulative_reward'].max() for r in cummulative_reward_by_time])
+    ymin = min([r.loc[:, 'cummulative_reward'].min() for r in cummulative_reward_by_time])
 
 
-time_by_episode = [e.loc[:, 'time'].to_frame() for e in episode]
+    for r in cummulative_reward_by_time:
+        plt.plot(r['time'].tolist(), r['cummulative_reward'].tolist())
 
-xmax = max([t.index.max() for t in time_by_episode])
-xmin = min([t.index.min() for t in time_by_episode])
-ymax = max([t.loc[:, 'time'].max() for t in time_by_episode])
-ymin = min([t.loc[:, 'time'].min() for t in time_by_episode])
+    plt.xlim=(xmin, xmax)
+    plt.ylim=(ymin, ymax)
+    plt.xlabel("time")
+    plt.ylabel("cummulative reward")
+    plt.legend(legend)
 
-plt.figure()
-
-for t in time_by_episode:
-    plt.plot(t.index.tolist(), t['time'].tolist())
-
-plt.xlim=(xmin, xmax)
-plt.ylim=(ymin, ymax)
-plt.xlabel("episode")
-plt.ylabel("time")
-plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden', 'deep_rl_ram_4_hidden', 'deep_rl_ram_5_hidden'])
-
-ax = plt.gca()
-ax.set_yticklabels([str(datetime.timedelta(seconds=ytick)) for ytick in ax.get_yticks()])
+    ax = plt.gca()
+    ax.set_xticklabels([str(datetime.timedelta(seconds=xtick)) for xtick in ax.get_xticks()])
 
 
-cummulative_reward_by_time = [e.loc[:, ['time', 'reward']] for e in episode]
+    #figure 3
+    plt.figure()
 
-for r in cummulative_reward_by_time:
-    r['cummulative_reward'] = r['reward'].rolling(min_periods=1, window=len(r)).sum()
+    episode_by_time = [e.loc[:, 'time'].to_frame() for e in episode]
 
-xmax = max([r.loc[:, 'time'].max() for r in cummulative_reward_by_time])
-xmin = min([r.loc[:, 'time'].min() for r in cummulative_reward_by_time])
-ymax = max([r.loc[:, 'cummulative_reward'].max() for r in cummulative_reward_by_time])
-ymin = min([r.loc[:, 'cummulative_reward'].min() for r in cummulative_reward_by_time])
-
-
-plt.figure()
-
-for r in cummulative_reward_by_time:
-    plt.plot(r['time'].tolist(), r['cummulative_reward'].tolist())
-
-plt.xlim=(xmin, xmax)
-plt.ylim=(ymin, ymax)
-plt.xlabel("time")
-plt.ylabel("cummulative reward")
-plt.legend(['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden', 'deep_rl_ram_4_hidden', 'deep_rl_ram_5_hidden'])
-
-ax = plt.gca()
-ax.set_xticklabels([str(datetime.timedelta(seconds=xtick)) for xtick in ax.get_xticks()])
+    xmax = max([t.loc[:, 'time'].max() for t in episode_by_time])
+    xmin = min([t.loc[:, 'time'].min() for t in episode_by_time])
+    ymax = max([t.index.max() for t in episode_by_time])
+    ymin = min([t.index.min() for t in episode_by_time])
 
 
+    for t in episode_by_time:
+        plt.plot(t['time'].tolist(), t.index.tolist())
 
-plt.show()
+    plt.xlim=(xmin, xmax)
+    plt.ylim=(ymin, ymax)
+    plt.xlabel("time")
+    plt.ylabel("episode")
+    plt.legend(legend)
+
+    ax = plt.gca()
+    ax.set_xticklabels([str(datetime.timedelta(seconds=xtick)) for xtick in ax.get_xticks()])
+
+
+    #show figures
+    plt.show()
+
+
+def plot_laptop_versus_desktop():
+    deep_rl_episode_desktop = pd.read_csv('data/deep_rl__openai-first-execution/monitor.csv', header=1)
+    deep_rl_episode_laptop = pd.read_csv('data/laptop-deep_rl__openai-execution/monitor.csv', header=1)
+
+    episode = [deep_rl_episode_desktop, deep_rl_episode_laptop]
+    legend = ['desktop+deep_rl', 'laptop+deep_rl']
+
+    plot(episode, legend)
+
+def plot_all_techniques_comparison():
+    deep_rl_episode = pd.read_csv('data/deep_rl__openai-first-execution/monitor.csv', header=1)
+    deep_rl_ram_1_hidden_episode = pd.read_csv('data/deep_rl_ram_1_hidden__openai-first-execution/monitor.csv',
+                                               header=1)
+    deep_rl_ram_2_hidden_episode = pd.read_csv('data/deep_rl_ram_2_hidden__openai-first-execution/monitor.csv',
+                                               header=1)
+    deep_rl_ram_3_hidden_episode = pd.read_csv('data/deep_rl_ram_3_hidden__openai-first-execution/monitor.csv',
+                                               header=1)
+    deep_rl_ram_4_hidden_episode = pd.read_csv('data/deep_rl_ram_4_hidden__openai-first-execution/monitor.csv',
+                                               header=1)
+    deep_rl_ram_5_hidden_episode = pd.read_csv('data/deep_rl_ram_5_hidden__openai-first-execution/monitor.csv',
+                                               header=1)
+
+    episode = [deep_rl_episode, deep_rl_ram_1_hidden_episode, deep_rl_ram_2_hidden_episode,
+               deep_rl_ram_3_hidden_episode, deep_rl_ram_4_hidden_episode, deep_rl_ram_5_hidden_episode]
+    legend = ['deep_rl', 'deep_rl_ram_1_hidden', 'deep_rl_ram_2_hidden', 'deep_rl_ram_3_hidden', 'deep_rl_ram_4_hidden',
+              'deep_rl_ram_5_hidden']
+
+    plot(episode, legend)
+
+
+plot_laptop_versus_desktop()
+
+plot_all_techniques_comparison()
