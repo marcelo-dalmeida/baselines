@@ -34,7 +34,7 @@ def plot(progress, legend):
     plt.xlim=(xmin, xmax)
     plt.ylim=(ymin, ymax)
     plt.xlabel("steps")
-    plt.ylabel("reward")
+    plt.ylabel("mean 100 episode reward")
     plt.legend(legend)
 
     #figure 2
@@ -43,12 +43,12 @@ def plot(progress, legend):
     cummulative_reward_by_time = [p.loc[:, ['steps', 'mean 100 episode reward']] for p in progress]
 
     for r in cummulative_reward_by_time:
-        r['cummulative_reward'] = r['mean 100 episode reward'].rolling(min_periods=1, window=len(r)).sum()
+        r['cummulative mean 100 episode reward'] = r['mean 100 episode reward'].rolling(min_periods=1, window=len(r)).sum()
 
     xmax = max([r.loc[:, 'steps'].max() for r in cummulative_reward_by_time])
     xmin = min([r.loc[:, 'steps'].min() for r in cummulative_reward_by_time])
-    ymax = max([r.loc[:, 'cummulative_reward'].max() for r in cummulative_reward_by_time])
-    ymin = min([r.loc[:, 'cummulative_reward'].min() for r in cummulative_reward_by_time])
+    ymax = max([r.loc[:, 'cummulative mean 100 episode reward'].max() for r in cummulative_reward_by_time])
+    ymin = min([r.loc[:, 'cummulative mean 100 episode reward'].min() for r in cummulative_reward_by_time])
 
 
     ax = plt.gca()
@@ -56,7 +56,7 @@ def plot(progress, legend):
     for i in range(len(cummulative_reward_by_time)):
 
         r = cummulative_reward_by_time[i]
-        p = plt.plot(r['steps'].tolist(), r['cummulative_reward'].tolist())
+        p = plt.plot(r['steps'].tolist(), r['cummulative mean 100 episode reward'].tolist())
 
         color = p[0].get_color()
         x = full_exploitation_timestep[i]
@@ -66,7 +66,7 @@ def plot(progress, legend):
     plt.xlim=(xmin, xmax)
     plt.ylim=(ymin, ymax)
     plt.xlabel("steps")
-    plt.ylabel("cummulative reward")
+    plt.ylabel("cummulative mean 100 episode reward")
     plt.legend(legend)
 
     #show figures
@@ -78,7 +78,7 @@ def plot_laptop_versus_desktop():
     deep_rl_episode_laptop = pd.read_csv('data/laptop-deep_rl__openai-execution/progress.csv')
 
     progress = [deep_rl_episode_desktop, deep_rl_episode_laptop]
-    legend = ['desktop+deep_rl', 'laptop+deep_rl']
+    legend = ['deep_rl @ desktop', 'deep_rl @ laptop']
 
     plot(progress, legend)
 
