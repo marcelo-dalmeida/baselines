@@ -37,16 +37,16 @@ def plot(episode, legend):
     cummulative_reward_by_time = [e.loc[:, ['time', 'reward']] for e in episode]
 
     for r in cummulative_reward_by_time:
-        r['cummulative_reward'] = r['reward'].rolling(min_periods=1, window=len(r)).sum()
+        r['cummulative reward'] = r['reward'].rolling(min_periods=1, window=len(r)).sum()
 
     xmax = max([r.loc[:, 'time'].max() for r in cummulative_reward_by_time])
     xmin = min([r.loc[:, 'time'].min() for r in cummulative_reward_by_time])
-    ymax = max([r.loc[:, 'cummulative_reward'].max() for r in cummulative_reward_by_time])
-    ymin = min([r.loc[:, 'cummulative_reward'].min() for r in cummulative_reward_by_time])
+    ymax = max([r.loc[:, 'cummulative reward'].max() for r in cummulative_reward_by_time])
+    ymin = min([r.loc[:, 'cummulative reward'].min() for r in cummulative_reward_by_time])
 
 
     for r in cummulative_reward_by_time:
-        plt.plot(r['time'].tolist(), r['cummulative_reward'].tolist())
+        plt.plot(r['time'].tolist(), r['cummulative reward'].tolist())
 
     plt.xlim=(xmin, xmax)
     plt.ylim=(ymin, ymax)
@@ -91,7 +91,7 @@ def plot_laptop_versus_desktop():
     deep_rl_episode_laptop = pd.read_csv('data/laptop-deep_rl__openai-execution/monitor.csv', header=1)
 
     episode = [deep_rl_episode_desktop, deep_rl_episode_laptop]
-    legend = ['desktop+deep_rl', 'laptop+deep_rl']
+    legend = ['deep_rl @ desktop', 'deep_rl @ laptop']
 
     plot(episode, legend)
 
