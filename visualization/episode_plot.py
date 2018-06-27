@@ -96,16 +96,16 @@ def plot_laptop_versus_desktop():
     plot(episode, legend)
 
 def plot_all_techniques_comparison():
-    deep_rl_episode = pd.read_csv('data/deep_rl__openai-first-execution/monitor.csv', header=1)
-    deep_rl_ram_1_hidden_episode = pd.read_csv('data/deep_rl_ram_1_hidden__openai-first-execution/monitor.csv',
+    deep_rl_episode = pd.read_csv('data/deep_rl__openai-second-execution/monitor.csv', header=1)
+    deep_rl_ram_1_hidden_episode = pd.read_csv('data/deep_rl_ram_1_hidden__openai-second-execution/monitor.csv',
                                                header=1)
-    deep_rl_ram_2_hidden_episode = pd.read_csv('data/deep_rl_ram_2_hidden__openai-first-execution/monitor.csv',
+    deep_rl_ram_2_hidden_episode = pd.read_csv('data/deep_rl_ram_2_hidden__openai-second-execution/monitor.csv',
                                                header=1)
-    deep_rl_ram_3_hidden_episode = pd.read_csv('data/deep_rl_ram_3_hidden__openai-first-execution/monitor.csv',
+    deep_rl_ram_3_hidden_episode = pd.read_csv('data/deep_rl_ram_3_hidden__openai-second-execution/monitor.csv',
                                                header=1)
     deep_rl_ram_4_hidden_episode = pd.read_csv('data/deep_rl_ram_4_hidden__openai-first-execution/monitor.csv',
                                                header=1)
-    deep_rl_ram_5_hidden_episode = pd.read_csv('data/deep_rl_ram_5_hidden__openai-first-execution/monitor.csv',
+    deep_rl_ram_5_hidden_episode = pd.read_csv('data/deep_rl_ram_5_hidden__openai-third-execution/monitor.csv',
                                                header=1)
 
     episode = [deep_rl_episode, deep_rl_ram_1_hidden_episode, deep_rl_ram_2_hidden_episode,

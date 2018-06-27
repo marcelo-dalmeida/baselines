@@ -83,12 +83,12 @@ def plot_laptop_versus_desktop():
     plot(progress, legend)
 
 def plot_all_techniques_comparison():
-    deep_rl_progress = pd.read_csv('data/deep_rl__openai-first-execution/progress.csv')
-    deep_rl_ram_1_hidden_progress = pd.read_csv('data/deep_rl_ram_1_hidden__openai-first-execution/progress.csv')
-    deep_rl_ram_2_hidden_progress = pd.read_csv('data/deep_rl_ram_2_hidden__openai-first-execution/progress.csv')
-    deep_rl_ram_3_hidden_progress = pd.read_csv('data/deep_rl_ram_3_hidden__openai-first-execution/progress.csv')
+    deep_rl_progress = pd.read_csv('data/deep_rl__openai-second-execution/progress.csv')
+    deep_rl_ram_1_hidden_progress = pd.read_csv('data/deep_rl_ram_1_hidden__openai-second-execution/progress.csv')
+    deep_rl_ram_2_hidden_progress = pd.read_csv('data/deep_rl_ram_2_hidden__openai-second-execution/progress.csv')
+    deep_rl_ram_3_hidden_progress = pd.read_csv('data/deep_rl_ram_3_hidden__openai-second-execution/progress.csv')
     deep_rl_ram_4_hidden_progress = pd.read_csv('data/deep_rl_ram_4_hidden__openai-first-execution/progress.csv')
-    deep_rl_ram_5_hidden_progress = pd.read_csv('data/deep_rl_ram_5_hidden__openai-first-execution/progress.csv')
+    deep_rl_ram_5_hidden_progress = pd.read_csv('data/deep_rl_ram_5_hidden__openai-third-execution/progress.csv')
 
     progress = [deep_rl_progress, deep_rl_ram_1_hidden_progress, deep_rl_ram_2_hidden_progress,
                 deep_rl_ram_3_hidden_progress, deep_rl_ram_4_hidden_progress, deep_rl_ram_5_hidden_progress]
