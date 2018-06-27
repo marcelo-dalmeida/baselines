@@ -97,7 +97,63 @@ def plot_all_techniques_comparison():
 
     plot(progress, legend)
 
+def plot_same_architecture_comparison():
+
+    deep_rl_progress_first = pd.read_csv('data/deep_rl__openai-first-execution/progress.csv')
+    deep_rl_progress_second = pd.read_csv('data/deep_rl__openai-second-execution/progress.csv')
+    deep_rl_progress_third = pd.read_csv('data/deep_rl__openai-third-execution/progress.csv')
+
+    progress = [deep_rl_progress_first, deep_rl_progress_second, deep_rl_progress_third]
+    legend = ['deep_rl [first execution]', 'deep_rl [second execution]', 'deep_rl [third execution]']
+    plot(progress, legend)
+
+
+    deep_rl_ram_1_hidden_progress_first = pd.read_csv('data/deep_rl_ram_1_hidden__openai-first-execution/progress.csv')
+    deep_rl_ram_1_hidden_progress_second = pd.read_csv('data/deep_rl_ram_1_hidden__openai-second-execution/progress.csv')
+    deep_rl_ram_1_hidden_progress_third = pd.read_csv('data/deep_rl_ram_1_hidden__openai-third-execution/progress.csv')
+
+    progress = [deep_rl_ram_1_hidden_progress_first, deep_rl_ram_1_hidden_progress_second, deep_rl_ram_1_hidden_progress_third]
+    legend = ['deep_rl_ram_1_hidden [first execution]', 'deep_rl_ram_1_hidden [second execution]', 'deep_rl_ram_1_hidden [third execution]']
+    plot(progress, legend)
+
+
+    deep_rl_ram_2_hidden_progress_first = pd.read_csv('data/deep_rl_ram_2_hidden__openai-first-execution/progress.csv')
+    deep_rl_ram_2_hidden_progress_second = pd.read_csv('data/deep_rl_ram_2_hidden__openai-second-execution/progress.csv')
+    deep_rl_ram_2_hidden_progress_third = pd.read_csv('data/deep_rl_ram_2_hidden__openai-third-execution/progress.csv')
+
+    progress = [deep_rl_ram_2_hidden_progress_first, deep_rl_ram_2_hidden_progress_second, deep_rl_ram_2_hidden_progress_third]
+    legend = ['deep_rl_ram_2_hidden [first execution]', 'deep_rl_ram_2_hidden [second execution]', 'deep_rl_ram_2_hidden [third execution]']
+    plot(progress, legend)
+
+
+    deep_rl_ram_3_hidden_progress_first = pd.read_csv('data/deep_rl_ram_3_hidden__openai-first-execution/progress.csv')
+    deep_rl_ram_3_hidden_progress_second = pd.read_csv('data/deep_rl_ram_3_hidden__openai-second-execution/progress.csv')
+    deep_rl_ram_3_hidden_progress_third = pd.read_csv('data/deep_rl_ram_3_hidden__openai-third-execution/progress.csv')
+
+    progress = [deep_rl_ram_3_hidden_progress_first, deep_rl_ram_3_hidden_progress_second, deep_rl_ram_3_hidden_progress_third]
+    legend = ['deep_rl_ram_3_hidden [first execution]', 'deep_rl_ram_3_hidden [second execution]', 'deep_rl_ram_3_hidden [third execution]']
+    plot(progress, legend)
+
+
+    deep_rl_ram_4_hidden_progress_first = pd.read_csv('data/deep_rl_ram_4_hidden__openai-first-execution/progress.csv')
+    deep_rl_ram_4_hidden_progress_second = pd.read_csv('data/deep_rl_ram_4_hidden__openai-second-execution/progress.csv')
+    deep_rl_ram_4_hidden_progress_third = pd.read_csv('data/deep_rl_ram_4_hidden__openai-third-execution/progress.csv')
+
+    progress = [deep_rl_ram_4_hidden_progress_first, deep_rl_ram_4_hidden_progress_second, deep_rl_ram_4_hidden_progress_third]
+    legend = ['deep_rl_ram_4_hidden [first execution]', 'deep_rl_ram_4_hidden [second execution]', 'deep_rl_ram_4_hidden [third execution]']
+    plot(progress, legend)
+
+
+    deep_rl_ram_5_hidden_progress_first = pd.read_csv('data/deep_rl_ram_5_hidden__openai-first-execution/progress.csv')
+    deep_rl_ram_5_hidden_progress_second = pd.read_csv('data/deep_rl_ram_5_hidden__openai-second-execution/progress.csv')
+    deep_rl_ram_5_hidden_progress_third = pd.read_csv('data/deep_rl_ram_5_hidden__openai-third-execution/progress.csv')
+
+    progress = [deep_rl_ram_5_hidden_progress_first, deep_rl_ram_5_hidden_progress_second, deep_rl_ram_5_hidden_progress_third]
+    legend = ['deep_rl_ram_5_hidden [first execution]', 'deep_rl_ram_5_hidden [second execution]', 'deep_rl_ram_5_hidden [third execution]']
+    plot(progress, legend)
 
 plot_laptop_versus_desktop()
 
 plot_all_techniques_comparison()
+
+plot_same_architecture_comparison()
